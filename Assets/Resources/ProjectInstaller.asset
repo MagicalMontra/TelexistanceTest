@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d57564f775dadbf46a64857c03b93e8b, type: 3}
   m_Name: ProjectInstaller
   m_EditorClassIdentifier: 
+  globalCanvasInstaller: {fileID: 2702439148067723748, guid: 3abe3375018f56a49af8ab8bb7e368c7, type: 3}
