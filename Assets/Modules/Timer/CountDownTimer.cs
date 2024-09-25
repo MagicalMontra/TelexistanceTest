@@ -1,5 +1,6 @@
 ﻿using UniRx;
 using System;
+using UnityEngine;
 using Zenject;
 using UnityEngine.Assertions;
 
@@ -11,8 +12,6 @@ namespace SETHD.Timer
         public IObservable<float> Observable => observable;
 
         private bool isTicking;
-        private float time;
-        private float endTime;
         private IObserver<float> observer;
         private IObservable<float> observable;
 
@@ -41,9 +40,7 @@ namespace SETHD.Timer
         
         public void Start()
         {
-            Assert.IsTrue(endTime > 0);
             isTicking = true;
-            time = endTime;
         }
 
         public void Pause()
@@ -54,7 +51,6 @@ namespace SETHD.Timer
         public void Stop()
         {
             isTicking = false;
-            time = endTime;
         }
         
         private void UpdateTime(float deltaTime)
@@ -62,24 +58,24 @@ namespace SETHD.Timer
             if (!isTicking)
                 return;
             
-            if (time <= 0)
+            if (Time.Value <= 0)
                 return;
             
-            time -= deltaTime;
-            time = Math.Max(time, 0);
+            Time.Value -= deltaTime;
+            Time.Value = Math.Max(Time.Value, 0);
                 
-            observer.OnNext(time);
+            observer.OnNext(Time.Value);
 
-            if (time > 0)
+            if (Time.Value > 0)
                 return;
 
             observer.OnCompleted();
             Stop();
         }
 
-        private IDisposable GetObserver(IObserver<float> observer)
+        private IDisposable GetObserver(IObserver<float> obs)
         {
-            this.observer = observer;
+            observer = obs;
             return Disposable.Empty;
         }
     }

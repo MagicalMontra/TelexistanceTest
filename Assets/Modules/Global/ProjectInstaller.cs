@@ -1,5 +1,4 @@
 using Zenject;
-using SETHD.Timer;
 using UnityEngine;
 
 namespace SETHD.Global

@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 99550992921248475}
   - component: {fileID: 7776667718306683640}
+  - component: {fileID: 8001917073006615488}
+  - component: {fileID: -7032007547703931797}
   m_Layer: 0
   m_Name: CountDownUIInstaller
   m_TagString: Untagged
@@ -45,3 +47,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 6185658469546446457, guid: 3d754678583ae454d85f294fb48899fa, type: 3}
+--- !u!114 &8001917073006615488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7550323035223714218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c47912ae4e51a84d92f1acf689997c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-7032007547703931797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7550323035223714218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08eca9f7688a0a24685b89133b020c8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scriptableObjectInstallers: []
+  _monoInstallers:
+  - {fileID: 7776667718306683640}
+  _installerPrefabs: []
+  _autoRun: 1
+  _kernel: {fileID: 8001917073006615488}

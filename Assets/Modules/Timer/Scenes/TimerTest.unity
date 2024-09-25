@@ -290,8 +290,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scriptableObjectInstallers: []
   _monoInstallers: []
-  _installerPrefabs:
-  - {fileID: 7776667718306683640, guid: fb16beb3cb19ea94fac97a1787313bf3, type: 3}
+  _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
     m_PersistentCalls:
@@ -354,6 +353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb8822e14d0e4a9e977a19320a083668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiInstaller: {fileID: 7776667718306683640, guid: fb16beb3cb19ea94fac97a1787313bf3, type: 3}
 --- !u!4 &2066678274
 Transform:
   m_ObjectHideFlags: 0
