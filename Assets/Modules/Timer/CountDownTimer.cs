@@ -70,6 +70,7 @@ namespace SETHD.Timer
                 return;
 
             observer.OnCompleted();
+            observable = UniRx.Observable.Create<float>(GetObserver);
             Stop();
         }
 

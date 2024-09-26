@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 6185658469546446457, guid: 3d754678583ae454d85f294fb48899fa, type: 3}
+  prefabSourceInstaller: {fileID: 811456054762068167, guid: fbec2d4b6babee740872e8d4fb40b7b4, type: 3}
 --- !u!114 &8001917073006615488
 MonoBehaviour:
   m_ObjectHideFlags: 0
