@@ -1978,6 +1978,11 @@ namespace Zenject
         {
             return InstantiateComponentOnNewGameObject<T>(typeof(T).Name);
         }
+        
+        public T InstantiateComponentOnNewGameObject<T>(Transform parentTransform) where T : Component
+        {
+            return InstantiateComponent<T>(CreateEmptyGameObject(new GameObjectCreationParameters { Name = typeof(T).Name, ParentTransform = parentTransform }, null));
+        }
 
         // Note: For IL2CPP platforms make sure to use new object[] instead of new [] when creating
         // the argument list to avoid errors converting to IEnumerable<object>

@@ -19,11 +19,9 @@ namespace SETHD.UI.CountDownTimer
         public Button PauseButton => buttons[1];
         public Button StopButton => buttons[2];
         
-        public CanvasGroup StartButtonFader => buttonFaders[0];
-        public CanvasGroup PauseButtonFader => buttonFaders[1];
-        public CanvasGroup StopButtonFader => buttonFaders[2];
-        public RectTransform CircleMask => circleMask;
-        public TextMeshProUGUI TimeText => timeText;
+        private CanvasGroup StartButtonFader => buttonFaders[0];
+        private CanvasGroup PauseButtonFader => buttonFaders[1];
+        private CanvasGroup StopButtonFader => buttonFaders[2];
         
         private const int INDEX_OFFSET = 99;
 

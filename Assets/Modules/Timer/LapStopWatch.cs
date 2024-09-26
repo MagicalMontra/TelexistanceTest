@@ -5,10 +5,23 @@ using System.Collections.Generic;
 
 namespace SETHD.Timer
 {
+    public class LapStopWatchController : IInitializable, ILateDisposable
+    {
+        private readonly ITimer<float> timer;
+        public void Initialize()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void LateDispose()
+        {
+            throw new NotImplementedException();
+        }
+    }
+    
     public class LapStopWatch : ITimer<List<float>>, IFixedTickable, ILateDisposable
     {
         public IReactiveProperty<List<float>> Time { get; private set; }
-        
         public IObservable<float> Observable => observable;
         
         private bool isTicking;
@@ -17,13 +30,14 @@ namespace SETHD.Timer
 
         public LapStopWatch()
         {
-            Time = new ReactiveProperty<List<float>>(new List<float>());
             observable = UniRx.Observable.Create<float>(GetObserver);
+            Time = new ReactiveProperty<List<float>>(new List<float>());
         }
         
         public void Initialize(List<float> times = null)
         {
             Time.Value.Clear();
+            Time.Value.Add(0);
         }
         
         public void FixedTick()
@@ -55,7 +69,9 @@ namespace SETHD.Timer
         {
             isTicking = false;
             observer.OnCompleted();
+            observable = UniRx.Observable.Create<float>(GetObserver);
             Time.Value.Clear();
+            Time.Value.Add(0);
         }
         
         protected virtual void UpdateTime(float deltaTime)
@@ -65,8 +81,6 @@ namespace SETHD.Timer
 
             for (int i = 0; i < Time.Value.Count; i++)
                 Time.Value[i] += deltaTime;
-            
-            observer.OnNext(deltaTime);
         }
 
         private IDisposable GetObserver(IObserver<float> observer)
