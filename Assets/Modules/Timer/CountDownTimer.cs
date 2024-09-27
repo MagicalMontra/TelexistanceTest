@@ -60,9 +60,12 @@ namespace SETHD.Timer
         {
             if (!isTicking)
                 return;
-            
+
             if (Time.Value <= 0)
+            {
+                Time.Value = 0;
                 return;
+            }
             
             Time.Value -= deltaTime;
             Time.Value = Math.Max(Time.Value, 0);
@@ -72,6 +75,7 @@ namespace SETHD.Timer
             if (Time.Value > 0)
                 return;
 
+            Time.Value = 0;
             observer.OnCompleted();
             observable = UniRx.Observable.Create<float>(GetObserver);
             Stop();
