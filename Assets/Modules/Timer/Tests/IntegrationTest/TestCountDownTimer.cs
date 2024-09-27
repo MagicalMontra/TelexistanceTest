@@ -7,7 +7,7 @@ using UnityEngine.TestTools;
 
 namespace SETHD.Timer.IntegrationTest
 {
-    public class TextCountDownTimer : ZenjectIntegrationTestFixture
+    public class TestCountDownTimer : ZenjectIntegrationTestFixture
     {
         [Inject]
         private ITimer<float> timer;
@@ -19,6 +19,20 @@ namespace SETHD.Timer.IntegrationTest
             Container.BindInterfacesAndSelfTo<CountDownTimer>().AsSingle();
 
             PostInstall();
+        }
+        
+        [UnityTest]
+        public IEnumerator TestOnTick()
+        {
+            CommonInstall();
+            float seconds = 1f;
+            timer.Observable.Subscribe(time => Debug.Log(time));
+            timer.Initialize(seconds);
+            timer.Start();
+            
+            yield return new WaitForSeconds(0.1f);
+
+            Assert.Less(timer.Time.Value, seconds);
         }
         
         [UnityTest]
@@ -55,12 +69,13 @@ namespace SETHD.Timer.IntegrationTest
             timer.Pause();
             
             yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.5f);
             
             Assert.That(Mathf.Approximately(timer.Time.Value, 0f));
         }
         
         [UnityTest]
-        public IEnumerator TestComplete()
+        public IEnumerator TestOnComplete()
         {
             CommonInstall();
             bool isCompleted = false;
