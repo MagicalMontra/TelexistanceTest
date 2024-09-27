@@ -1,0 +1,21 @@
+{
+    "name": "App.CountDownTimer",
+    "rootNamespace": "SETHD.App.CountDownTimer",
+    "references": [
+        "GUID:0d8beb7f090555447a6cf5ce9e54dbb4",
+        "GUID:560b04d1a97f54a4e82edc0cbbb69285",
+        "GUID:deaf2bef7e5721d4aaa0edae9fe36c86",
+        "GUID:f51ebe6a0ceec4240a699833d6309b23",
+        "GUID:643b0f348948c4b41b6401ae0f7a333c",
+        "GUID:81b2d18d8bba225459ef180613124d08"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

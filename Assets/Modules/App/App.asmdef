@@ -1,0 +1,25 @@
+{
+    "name": "App",
+    "rootNamespace": "SETHD.App",
+    "references": [
+        "GUID:0d8beb7f090555447a6cf5ce9e54dbb4",
+        "GUID:560b04d1a97f54a4e82edc0cbbb69285",
+        "GUID:f51ebe6a0ceec4240a699833d6309b23",
+        "GUID:16c1ab09076d73a4ea7cca594c097d2f",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:f6abb0442b178ff4f9518a912796e124",
+        "GUID:731bd55a81ea7c44e913b8b993882527",
+        "GUID:098b10704354a214dbe3124f41ad1479",
+        "GUID:63986e528aa15b94d9c7e8e9a1163766",
+        "GUID:286e298c00de8cd44a13cb4cb67d05a9"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

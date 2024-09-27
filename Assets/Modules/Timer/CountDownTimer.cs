@@ -9,6 +9,7 @@ namespace SETHD.Timer
     public class CountDownTimer : ITimer<float>, IFixedTickable, ILateDisposable
     {
         public IReactiveProperty<float> Time { get; private set; }
+        public IReactiveProperty<bool> IsPause { get; private set; }
         public IObservable<float> Observable => observable;
 
         private bool isTicking;
@@ -18,6 +19,7 @@ namespace SETHD.Timer
         public CountDownTimer()
         {
             Time = new ReactiveProperty<float>(0);
+            IsPause = new ReactiveProperty<bool>(false);
             observable = UniRx.Observable.Create<float>(GetObserver);
         }
         
@@ -46,6 +48,7 @@ namespace SETHD.Timer
         public void Pause()
         {
             isTicking = !isTicking;
+            IsPause.Value = isTicking;
         }
 
         public void Stop()

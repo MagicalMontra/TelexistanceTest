@@ -16,8 +16,9 @@ namespace SETHD.Timer
     public interface ITimer<T>
     {
         IReactiveProperty<T> Time { get; }
+        IReactiveProperty<bool> IsPause { get; }
         IObservable<float> Observable { get; }
-        void Initialize(T generic);
+        void Initialize(T generic = default);
         void Start();
         void Pause();
         void Stop();

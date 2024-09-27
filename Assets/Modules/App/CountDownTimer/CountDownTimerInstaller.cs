@@ -1,8 +1,8 @@
-﻿using SETHD.UI.CountDownTimer;
+﻿using Zenject;
 using UnityEngine;
-using Zenject;
+using SETHD.UI.CountDownTimer;
 
-namespace SETHD.Timer
+namespace SETHD.App.CountDownTimer
 {
     public class CountDownTimerInstaller : MonoInstaller<CountDownTimerInstaller>
     {
@@ -11,7 +11,7 @@ namespace SETHD.Timer
         
         public override void InstallBindings()
         {
-            Container.BindInterfacesAndSelfTo<CountDownTimer>().AsSingle();
+            Container.BindInterfacesAndSelfTo<Timer.CountDownTimer>().AsSingle();
             Container.BindInterfacesAndSelfTo<CountDownTimerController>().AsSingle();
             Container.Bind<CountDownTimerUI>().FromSubContainerResolve().ByNewContextPrefab(uiInstaller).AsSingle();
         }

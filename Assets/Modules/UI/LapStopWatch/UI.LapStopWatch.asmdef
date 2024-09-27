@@ -1,0 +1,25 @@
+{
+    "name": "UI.LapStopWatch",
+    "rootNamespace": "SETHD.UI.LapStopWatch",
+    "references": [
+        "GUID:560b04d1a97f54a4e82edc0cbbb69285",
+        "GUID:0d8beb7f090555447a6cf5ce9e54dbb4",
+        "GUID:f51ebe6a0ceec4240a699833d6309b23",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:029c1c1b674aaae47a6841a0b89ad80e",
+        "GUID:391630258491c03499b8bc84b50f8ee7",
+        "GUID:dc47925d1a5fa2946bdd37746b2b5d48",
+        "GUID:396257723a08def4c852a9ce37d5d5f0",
+        "GUID:63986e528aa15b94d9c7e8e9a1163766",
+        "GUID:029025e1205b66b4c8a934409337eed0"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -31,10 +31,12 @@ namespace SETHD.Echo
                 return;
             
             var rented = audioSourceProvider.Rent();
-            actives.Add(key, rented);
+            actives.TryAdd(key, rented);
             Assert.IsTrue(value);
             rented.clip = value;
             rented.Play();
+            await UniTask.WaitForSeconds(rented.clip.length);
+            await Stop(key);
             await UniTask.Yield();
         }
 
@@ -63,6 +65,7 @@ namespace SETHD.Echo
                 audioSourceProvider.Return(source.Value);
             }
             
+            actives.Clear();
             await UniTask.Yield();
         }
 
@@ -71,7 +74,7 @@ namespace SETHD.Echo
             if (!actives.ContainsKey(key))
                 return;
             
-            actives[key].UnPause();
+            actives[key].Stop();
             audioSourceProvider.Return(actives[key]);
             actives.Remove(key);
             await UniTask.Yield();

@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3471054666126001186
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 728807690549618039}
+  - component: {fileID: 6719405499695777325}
+  m_Layer: 0
+  m_Name: AppInstaller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &728807690549618039
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3471054666126001186}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 567.22003, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6719405499695777325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3471054666126001186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f615fa15786c4500a74be83878f37253, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuButtonUIPrefab: {fileID: 45202901353519683, guid: d64e606336c98444bba75e21e4fdf328, type: 3}
+  timeUIInstaller: {fileID: 1605623587965147469, guid: a23c762d657423546b75f11770a1e174, type: 3}
+  lapStopWatchInstaller: {fileID: 8010625847854049913, guid: b0dc12d37bad29743a32ef888c4182e4, type: 3}
+  countDownTimerInstaller: {fileID: 3473983017825490266, guid: a5bbbbafd5f61bc45b99655071c334ef, type: 3}

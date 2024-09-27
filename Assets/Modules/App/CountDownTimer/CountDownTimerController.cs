@@ -1,21 +1,24 @@
-﻿using System;
-using System.Globalization;
-using Cysharp.Threading.Tasks;
-using DG.Tweening;
-using SETHD.UI.CountDownTimer;
-using UniRx;
-using UnityEngine;
+﻿using UniRx;
+using System;
 using Zenject;
+using SETHD.Echo;
+using UnityEngine;
+using Cysharp.Threading.Tasks;
+using SETHD.Timer;
+using SETHD.UI.CountDownTimer;
+using PlayMode = SETHD.Echo.PlayMode;
 
-namespace SETHD.Timer
+namespace SETHD.App.CountDownTimer
 {
     public class CountDownTimerController : IInitializable, ILateDisposable
     {
-        private const int HOUR_AS_MINUTE_MULTIPLER = 3600;
-        private const int MINUTE_AS_MINUTE_MULTIPLER = 60;
-        
+        private const int HOURS_AS_SECONDS_MULTIPLER = 3600;
+        private const int MINUTES_AS_SCEONDS_MULTIPLER = 60;
+        private const string ON_COMPLETED_SOUND_KEY = "CountDownEnd";
+
         private readonly ITimer<float> timer;
         private readonly CountDownTimerUI ui;
+        private readonly IAudioChannel audioChannel;
 
         private float seconds;
         private float hourAsSeconds;
@@ -23,27 +26,29 @@ namespace SETHD.Timer
 
         private IDisposable textDisposable;
         private IDisposable stopDisposable;
+        private IDisposable timerDisposable;
         private IDisposable startDisposable;
         private IDisposable pauseDisposable;
         
-        public CountDownTimerController(ITimer<float> timer, CountDownTimerUI ui)
+        public CountDownTimerController(ITimer<float> timer, CountDownTimerUI ui, IAudioChannel audioChannel)
         {
-            this.timer = timer;
             this.ui = ui;
+            this.timer = timer;
+            this.audioChannel = audioChannel;
         }
 
         public void Initialize()
         {
             ui.TargetSeconds.Subscribe(value => seconds = value);
-            ui.TargetHours.Subscribe(value => hourAsSeconds = value * HOUR_AS_MINUTE_MULTIPLER);
-            ui.TargetMinutes.Subscribe(value => minuteAsSeconds = value * MINUTE_AS_MINUTE_MULTIPLER);
+            ui.TargetHours.Subscribe(value => hourAsSeconds = value * HOURS_AS_SECONDS_MULTIPLER);
+            ui.TargetMinutes.Subscribe(value => minuteAsSeconds = value * MINUTES_AS_SCEONDS_MULTIPLER);
             
             textDisposable = timer.Time.Where(time => time > 0).Subscribe(ui.SetTimeText);
             stopDisposable = ui.StopButton.OnClickAsObservable().Subscribe(_ => OnStop());
             startDisposable = ui.StartButton.OnClickAsObservable().Subscribe(_ => OnStart());
             pauseDisposable = ui.PauseButton.OnClickAsObservable().Subscribe(_ => timer.Pause());
             
-            timer.Observable.Subscribe(time => Debug.Log($"{time}"), OnComplete);
+            timerDisposable = timer.Observable.Subscribe(OnNext, OnComplete);
         }
 
         public void LateDispose()
@@ -52,6 +57,12 @@ namespace SETHD.Timer
             stopDisposable.Dispose();
             startDisposable.Dispose();
             pauseDisposable.Dispose();
+            timerDisposable.Dispose();
+        }
+
+        public void SetActive(bool isEnabled)
+        {
+            ui.gameObject.SetActive(isEnabled);
         }
 
         private void OnStart()
@@ -80,6 +91,13 @@ namespace SETHD.Timer
             await ui.EndMask();
             timer.Initialize(ui.TargetSeconds.Value);
         }
+        
+        private void OnNext(float time)
+        {
+#if UNITY_EDITOR
+            Debug.Log($"{time:F2}");
+#endif
+        }
 
         private void OnComplete()
         {
@@ -88,9 +106,14 @@ namespace SETHD.Timer
         
         private async UniTaskVoid OnCompleteAsync()
         {
+#if UNITY_EDITOR
+            Debug.Log($"Count Down Completed");
+#endif
+            
+            audioChannel.Play(ON_COMPLETED_SOUND_KEY, PlayMode.StartOver).Forget();
             await ui.EndMask();
             timer.Initialize(hourAsSeconds + minuteAsSeconds + seconds);
-            timer.Observable.Subscribe(time => Debug.Log($"{time}"), OnComplete);
+            timer.Observable.Subscribe(OnNext, OnComplete);
         }
     }
 }

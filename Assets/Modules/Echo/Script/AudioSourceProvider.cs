@@ -18,11 +18,13 @@ namespace SETHD.Echo
         public AudioSource Rent()
         {
             var audioSource = disables.Count <= 0 ? factory.Create() : disables.Pop();
+            audioSource.gameObject.SetActive(true);
             return audioSource;
         }
 
         public void Return(AudioSource source)
         {
+            source.gameObject.SetActive(false);
             disables.Push(source);
         }
     }

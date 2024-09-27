@@ -104,8 +104,8 @@ namespace SETHD.Echo
 
             if (!audioBank.Audios.TryGet(key, out var clip))
             {
-#if DEVELOPMENT
-                
+#if UNITY_EDITOR
+                Debug.LogError($"[Echo]: {key} does not exist in the audio bank.");
 #endif
                 return;
             }
