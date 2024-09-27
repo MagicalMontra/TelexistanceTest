@@ -781,6 +781,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stopSize: 276.986
   startSize: 3000
+  pauseButtonText: {fileID: 1515783990432922212}
   timeItemPrefab: {fileID: 6054615694132635943, guid: 1cc231a63e8a731428def13327427453, type: 3}
   hoursScroller: {fileID: 4264262048808389854}
   minutesScroller: {fileID: 9196065642734685372}

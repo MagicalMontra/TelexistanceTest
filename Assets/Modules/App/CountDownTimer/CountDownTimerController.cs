@@ -46,7 +46,7 @@ namespace SETHD.App.CountDownTimer
             textDisposable = timer.Time.Where(time => time > 0).Subscribe(ui.SetTimeText);
             stopDisposable = ui.StopButton.OnClickAsObservable().Subscribe(_ => OnStop());
             startDisposable = ui.StartButton.OnClickAsObservable().Subscribe(_ => OnStart());
-            pauseDisposable = ui.PauseButton.OnClickAsObservable().Subscribe(_ => timer.Pause());
+            pauseDisposable = ui.PauseButton.OnClickAsObservable().Subscribe(_ => OnPause());
             
             timerDisposable = timer.Observable.Subscribe(OnNext, OnComplete);
         }
@@ -80,6 +80,12 @@ namespace SETHD.App.CountDownTimer
             timer.Start();
         }
 
+        private void OnPause()
+        {
+            timer.Pause();
+            ui.PauseButtonText.text = timer.IsPause.Value ? "Pause" : "Resume";
+        }
+
         private void OnStop()
         {
             OnStopAsync().Forget();
@@ -88,6 +94,7 @@ namespace SETHD.App.CountDownTimer
         private async UniTaskVoid OnStopAsync()
         {
             timer.Stop();
+            ui.PauseButtonText.text = "Pause";
             await ui.EndMask();
             timer.Initialize(ui.TargetSeconds.Value);
         }

@@ -12,6 +12,7 @@ namespace SETHD.Global
         
         public override void InstallBindings()
         {
+            Application.targetFrameRate = 120;
             SignalBusInstaller.Install(Container);
             Container.Bind<GlobalCanvas>().FromSubContainerResolve().ByNewContextPrefab(globalCanvasInstaller).AsSingle().NonLazy();
             Container.BindFactory<Object, TextMeshProUGUI, PlaceholderFactory<Object, TextMeshProUGUI>>().FromFactory<PrefabFactory<TextMeshProUGUI>>();

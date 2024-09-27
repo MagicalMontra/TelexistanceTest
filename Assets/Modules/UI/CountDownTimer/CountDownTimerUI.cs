@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using TheraBytes.BetterUi;
 using Cysharp.Threading.Tasks;
 using DanielLochner.Assets.SimpleScrollSnap;
+using UnityEngine.Serialization;
 
 namespace SETHD.UI.CountDownTimer
 {
@@ -18,6 +19,8 @@ namespace SETHD.UI.CountDownTimer
         public Button StartButton => buttons[0];
         public Button PauseButton => buttons[1];
         public Button StopButton => buttons[2];
+
+        public TextMeshProUGUI PauseButtonText => pauseButtonText;
         
         private CanvasGroup StartButtonFader => buttonFaders[0];
         private CanvasGroup PauseButtonFader => buttonFaders[1];
@@ -30,6 +33,9 @@ namespace SETHD.UI.CountDownTimer
 
         [SerializeField]
         private float startSize;
+        
+        [SerializeField]
+        private TextMeshProUGUI pauseButtonText;
 
         [SerializeField]
         private TextMeshProUGUI timeItemPrefab;
