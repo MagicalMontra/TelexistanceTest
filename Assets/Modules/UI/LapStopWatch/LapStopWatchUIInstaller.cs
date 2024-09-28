@@ -15,6 +15,7 @@ namespace SETHD.UI.LapStopWatch
         public override void InstallBindings()
         {
             Container.Bind<LapStopWatchUI>().FromComponentsInNewPrefab(prefab).UnderTransform(globalCanvas.RectTransform).AsSingle().NonLazy();
+            Container.BindFactory<Object, Transform, LapTimeItem, LapTimeItem.Factory>().FromFactory<LapTimeItemFactory>();
         }
     }
 }

@@ -1,12 +1,15 @@
 {
-    "name": "Global.IntergrationTest",
-    "rootNamespace": "SETHD.Global.IntergrationTest",
+    "name": "UI.CountDownTimer.IntergrationTest",
+    "rootNamespace": "SETHD.UI.CountDownTimer.IntergrationTest",
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
         "Zenject",
         "Zenject-TestFramework",
-        "Global"
+        "UI.CountDownTimer",
+        "Global",
+        "Zenject-IntegrationTests-Editor",
+        "Unity.TextMeshPro"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

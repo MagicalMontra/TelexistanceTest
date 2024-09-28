@@ -1,4 +1,5 @@
-﻿using UniRx;
+﻿using System;
+using UniRx;
 using Zenject;
 using UnityEngine;
 using NUnit.Framework;
@@ -103,23 +104,73 @@ namespace SETHD.Timer.IntegrationTest
             timer.Initialize();
             timer.Start();
             
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(1f);
             
-            timer.Start();
+            timer.Pause();
             float snapShotValue = timer.Time.Value[^1];
-            Assert.Less(snapShotValue, 0.18f);
-            
-            yield return new WaitForSeconds(0.1f);
-            
+            Debug.Log("Lap 1 " + snapShotValue);
+            Assert.That(Math.Abs(snapShotValue - 1f) < 0.03f);
+            timer.Pause();
             timer.Start();
+            
+            yield return new WaitForSeconds(1f);
+            
+            timer.Pause();
             snapShotValue = timer.Time.Value[^1];
-            Assert.Less(snapShotValue, 0.18f);
-            
-            yield return new WaitForSeconds(0.1f);
-            
+            Debug.Log("Lap 2 " + snapShotValue);
+            Assert.That(Math.Abs(snapShotValue - 1f) < 0.03f);
+            timer.Pause();
             timer.Start();
+            
+            yield return new WaitForSeconds(1f);
+            
+            timer.Pause();
             snapShotValue = timer.Time.Value[^1];
-            Assert.Less(snapShotValue, 0.18f);
+            Debug.Log("Lap 3 " + snapShotValue);
+            Assert.That(Math.Abs(snapShotValue - 1f) < 0.03f);
+            timer.Pause();
+            timer.Start();
+        }
+        
+        [UnityTest]
+        [TestCase(1f, ExpectedResult = null)]
+        [TestCase(2f, ExpectedResult = null)]
+        [TestCase(3f, ExpectedResult = null)]
+        [TestCase(4f, ExpectedResult = null)]
+        [TestCase(5f, ExpectedResult = null)]
+        public IEnumerator TestLaps(float seconds)
+        {
+            CommonInstall();
+            timer.Observable.Subscribe();
+            timer.Initialize();
+            timer.Start();
+            
+            yield return new WaitForSeconds(seconds);
+            
+            timer.Pause();
+            float snapShotValue = timer.Time.Value[^1];
+            Debug.Log("Lap 1 " + snapShotValue);
+            Assert.That(Math.Abs(snapShotValue - seconds) < 0.03f);
+            timer.Pause();
+            timer.Start();
+            
+            yield return new WaitForSeconds(seconds);
+            
+            timer.Pause();
+            snapShotValue = timer.Time.Value[^1];
+            Debug.Log("Lap 2 " + snapShotValue);
+            Assert.That(Math.Abs(snapShotValue - seconds) < 0.03f);
+            timer.Pause();
+            timer.Start();
+            
+            yield return new WaitForSeconds(seconds);
+            
+            timer.Pause();
+            snapShotValue = timer.Time.Value[^1];
+            Debug.Log("Lap 3 " + snapShotValue);
+            Assert.That(Math.Abs(snapShotValue - seconds) < 0.03f);
+            timer.Pause();
+            timer.Start();
         }
         
         [UnityTest]

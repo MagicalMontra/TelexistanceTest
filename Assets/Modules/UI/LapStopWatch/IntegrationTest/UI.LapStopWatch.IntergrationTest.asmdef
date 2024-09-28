@@ -1,12 +1,15 @@
 {
-    "name": "Global.IntergrationTest",
-    "rootNamespace": "SETHD.Global.IntergrationTest",
+    "name": "UI.LapStopWatch.IntergrationTest",
+    "rootNamespace": "SETHD.UI.LapStopWatch.IntergrationTest",
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
         "Zenject",
         "Zenject-TestFramework",
-        "Global"
+        "UI.LapStopWatch",
+        "Global",
+        "Zenject-IntegrationTests-Editor",
+        "Unity.TextMeshPro"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

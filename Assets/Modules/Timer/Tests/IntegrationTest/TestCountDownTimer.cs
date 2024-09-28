@@ -39,8 +39,7 @@ namespace SETHD.Timer.IntegrationTest
         public IEnumerator TestPause()
         {
             CommonInstall();
-            bool isCompleted = false;
-            timer.Observable.Subscribe(time => Debug.Log(time), () => isCompleted = true);
+            timer.Observable.Subscribe(time => Debug.Log(time));
             timer.Initialize(1f);
             timer.Start();
             
@@ -55,8 +54,7 @@ namespace SETHD.Timer.IntegrationTest
         public IEnumerator TestUnPause()
         {
             CommonInstall();
-            bool isCompleted = false;
-            timer.Observable.Subscribe(time => Debug.Log(time), () => isCompleted = true);
+            timer.Observable.Subscribe(time => Debug.Log(time));
             timer.Initialize(1f);
             timer.Start();
             
@@ -98,15 +96,16 @@ namespace SETHD.Timer.IntegrationTest
         public IEnumerator TestSeconds(float seconds)
         {
             CommonInstall();
-            
-            timer.Observable.Subscribe(time => Debug.Log(time), () => Debug.Log(timer.Time.Value));
+            bool isCompleted = false;
+            timer.Observable.Subscribe(time => Debug.Log(time), () =>
+            {
+                isCompleted = true;
+                Assert.AreEqual(0f, timer.Time.Value);
+            });
             timer.Initialize(seconds);
             timer.Start();
             
-            yield return new WaitForSeconds(seconds);
-            yield return new WaitForSeconds(0.5f);
-            
-            Assert.AreEqual(0f, timer.Time.Value);
+            yield return new WaitUntil(() => isCompleted);
         }
         
         [UnityTest]

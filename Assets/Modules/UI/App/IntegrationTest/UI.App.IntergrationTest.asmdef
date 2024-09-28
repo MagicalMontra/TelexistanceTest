@@ -1,12 +1,15 @@
 {
-    "name": "Global.IntergrationTest",
-    "rootNamespace": "SETHD.Global.IntergrationTest",
+    "name": "UI.App.IntergrationTest",
+    "rootNamespace": "SETHD.UI.App.IntergrationTest",
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
         "Zenject",
         "Zenject-TestFramework",
-        "Global"
+        "UI.App",
+        "Global",
+        "Zenject-IntegrationTests-Editor",
+        "Unity.TextMeshPro"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

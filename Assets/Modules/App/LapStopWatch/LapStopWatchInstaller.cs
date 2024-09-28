@@ -14,7 +14,6 @@ namespace SETHD.App.LapStopWatch
             Container.BindInterfacesAndSelfTo<Timer.LapStopWatch>().AsSingle();
             Container.BindInterfacesAndSelfTo<LapStopWatchController>().AsSingle();
             Container.Bind<LapStopWatchUI>().FromSubContainerResolve().ByNewContextPrefab(uiInstaller).AsSingle();
-            Container.BindFactory<Object, Transform, LapTimeItem, LapTimeItem.Factory>().FromFactory<LapTimeItemFactory>();
         }
     }
 }
